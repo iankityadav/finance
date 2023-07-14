@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    History
+{% endblock %}
+
+{% block main %}
+    <div class="container ">
+        <table class="table">
+            <thead>
+                <th>Symbol</th>
+                <th>Shares</th>
+                <th>Price</th>
+                <th>Transacted</th>
+            </thead>
+            {% for item in transactions %}
+            <tr class="{{'text-success' if item.type=='BUY' else 'text-danger'}}">
+                <td>{{item.symbol}}</td>
+                <td>{{item.count}}</td>
+                <td>{{item.price | usd}}</td>
+                <td>{{item.transaction_date}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}
