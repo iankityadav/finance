@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Home
+{% endblock %}
+
+{% block main %}
+<div class="container px-5">
+    <table class="table w-100 ">
+        <thead class="table-bordered ">
+            <th>Symbol</th>
+            <th>Name</th>
+            <th>Shares</th>
+            <th>Price</th>
+            <th>Total</th>
+        </thead>
+        {% for share in user.shares %}
+            <tr>
+                <td>{{share.symbol}}</td>
+                <td>{{share.name}}</td>
+                <td>{{share.count}}</td>
+                <td>{{share.price | usd}}</td>
+                <td>{{usd(share.price*share.count) }}</td>
+            </tr>
+        {% endfor %}
+        <tr class="border-dark">
+            <td colspan="3"></td>
+            <td>Cash</td>
+            {% if user.cash %}
+                <td>{{user.cash | usd}}</td>
+            {% endif %}            
+        </tr>
+        <tr>
+            <td colspan="3"></td>
+            <td>TOTAL</td>
+            <td>{{user.total | usd}}</td>
+        </tr>
+    </table>
+</div>
+{% endblock %}
