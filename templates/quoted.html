@@ -1,0 +1,24 @@
+{% extends "quote.html" %}
+
+{% block quote %}
+    {% if items %}
+        {% for item in items %}
+            <div class="d-flex justify-content-center">
+                <div class="d-grid w-75 justify-content-center">
+                    <div class="row border text-bg-success">
+                        <div class="col px-4 ">Name</div>
+                        <div class="col px-4 ">Price</div>
+                    </div>
+                    <div class="row border">
+                        <div class="col px-4 ">{{item.name}}</div>
+                        <div class="col px-4 ">{{item.price | usd}}</div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <div class="p2 mx-auto">
+            No results
+        </div>
+    {% endif %}
+{% endblock %}
