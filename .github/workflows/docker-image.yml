@@ -23,8 +23,15 @@ jobs:
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
     - name: Push the Docker image to GitHub Packages
-      uses: docker/push-action@v2
+      uses: docker/build-push-action@v2
       with:
         context: .
         push: true
         tags: ${{ github.repository }}:latest, ${{ github.repository }}:finance-${{ github.sha }}
+     
+    - name: Generate artifact attestation
+      uses: actions/attest-build-provenance@v2
+      with:
+        subject-name: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME}}
+        subject-digest: ${{ steps.push.outputs.digest }}
+        push-to-registry: true
