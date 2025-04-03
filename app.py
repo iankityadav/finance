@@ -270,3 +270,6 @@ def sell():
     else:        
         shares = db.execute("SELECT name,symbol FROM portfolio JOIN shares on share_id=shares.id where user_id = ?", user_id)
         return render_template("sell.html", shares=shares)
+
+if __name__ == "__main__":
+    app.run(debug=True)
