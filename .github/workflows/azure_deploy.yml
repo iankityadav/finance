@@ -73,6 +73,6 @@ jobs:
         uses: azure/webapps-deploy@v3
         id: deploy-to-webapp
         with:
-          app-name: 'finance-tanvika'
+          app-name: 'finance-td'
           slot-name: 'Production'
           
